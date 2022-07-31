@@ -1,0 +1,27 @@
+.all-posts-wrapper ul{
+    list-style: none;
+}
+
+.all-posts-wrapper {
+    display: inline-block;
+    align-items: center;
+}
+
+.all-posts-wrapper .all-post-header {
+    text-align: center;
+    align-items: center;
+}
+
+.grid-content{
+    margin-bottom: 15px;
+    font-size: 19px;
+}
+
+.grid-container {
+    border-bottom: 1px solid black;
+    padding-bottom: 15px;
+}
+
+.create-post-content-header {
+    font-size: 20px;
+}

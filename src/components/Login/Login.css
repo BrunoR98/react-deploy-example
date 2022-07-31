@@ -1,0 +1,11 @@
+.login-wrapper{
+    display: inline-block;
+}
+
+.login-wrapper h1{
+    text-align: center;
+}
+
+.login-btn {
+    text-align: center;
+}

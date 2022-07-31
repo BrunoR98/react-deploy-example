@@ -1,0 +1,11 @@
+.register-wrapper{
+    display: inline-block;
+}
+
+.register-wrapper .register-label {
+    font-size: 20px;
+}
+
+.register-btn{
+    text-align: center;
+}
