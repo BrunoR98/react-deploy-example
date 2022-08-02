@@ -1,9 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const dataBaseURL = 'mongodb+srv://mongodb:contra12345@cluster0.dtzp66u.mongodb.net/test';
+const dotenv = require('dotenv');
+const cors = require('cors');
 
-const PORT = 3001;
-const HOST = 'localhost';
+dotenv.config({
+    path: 'src/services/dbconfig/.env',
+});
+
+const dataBaseURL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.dtzp66u.mongodb.net/test`;
 
 mongoose.connect(dataBaseURL);
 const database = mongoose.connection;
@@ -13,8 +17,9 @@ database.on('error', (e) => {
 })
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
-app.listen(PORT, HOST, () => {
-    console.log(`\nServer running on: http://${HOST}:${PORT}`);
-})
+app.listen(process.env.PORT, process.env.HOST, () => {
+    console.log(`\nServer running on: http://${process.env.HOST}:${process.env.PORT}`);
+});
