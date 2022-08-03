@@ -36,12 +36,8 @@ export default function Login() {
         e.preventDefault();
         try {
             await axios.post('http://localhost:3333/app/Login', user)
-                .then(response => console.log(response.data));
-            // loginValidator(userDB, user.password);
-            // userContext.setUserLogin(userDB[0].username);
-            // successLoginAlert(userDB[0].username);
-            userContext.setIsLogged(true);
             setUserFound(true);
+            userContext.setIsLogged(true);
         } catch (e) {
             errorLoginAlert(e.message);
             return;

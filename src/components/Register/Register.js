@@ -32,8 +32,7 @@ export default function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            axios.post('http://localhost:3333/app/Register', user)
-                .then(response => console.log(response.data));
+            axios.post('http://localhost:3333/app/Register', user);
             setRedirect(true);
             successRegisterAlert();
         } catch (e) {

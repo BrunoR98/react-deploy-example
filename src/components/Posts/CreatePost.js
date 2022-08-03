@@ -11,6 +11,7 @@ import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
 
 //Services
+import axios from 'axios';
 
 //Alert
 import { postCreatedAlert } from '../Alerts/SuccessAlerts';
@@ -32,10 +33,11 @@ export default function CreatePost () {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // setPost(post);
-        // setRedirect(true);
-        // setTitle('');
-        // setContent('');
+        axios.post('http://localhost:3333/app/CreatePost', post)
+        .catch(error => console.log(error.message));
+        setRedirect(true);
+        setTitle('');
+        setContent('');
     }
 
     return(

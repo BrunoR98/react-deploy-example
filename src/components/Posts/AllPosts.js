@@ -27,19 +27,19 @@ export default function AllPosts() {
     const userContext = useContext(UserContext);
 
     useEffect(() => {
-        // axios.get('http://localhost:3333/app/AllPosts')
-        // .then(data => {
-        //     for(let post of data) {
-        //         setAllPosts(post);
-        //     }
-        //     setLoading(false);
-        // });
+        axios.get('http://localhost:3333/app/AllPosts')
+        .then(response => {
+            for(let post of response.data) {
+                setAllPosts(post);
+            }
+            setLoading(false);
+        });
     }, [])
     
     if(loading) {
         return <h1>Loading all posts...</h1>
     }
-    
+        
     return(
         <div className='all-posts-wrapper'>
             <div className='all-post-header'>
@@ -63,9 +63,9 @@ export default function AllPosts() {
             </div>
             <ul>
             {allPosts.map(post => (
-                <li key={post.id}>
+                <li key={allPosts.indexOf(post) + 1}>
                     <Post
-                        id={post.id} 
+                        id={allPosts.indexOf(post) + 1} 
                         title={post.title}
                         content={post.content}
                     />
