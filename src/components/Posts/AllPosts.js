@@ -12,7 +12,7 @@ import { Button } from '@mui/material';
 import Post from './Post';
 
 //Services
-import { getPosts } from '../../services/PostsServices';
+import axios from 'axios';
 
 //Context
 import UserContext from '../../contexts/UserContext';
@@ -27,13 +27,13 @@ export default function AllPosts() {
     const userContext = useContext(UserContext);
 
     useEffect(() => {
-        const response = getPosts();
-        response.then(data => {
-            for(let post of data) {
-                setAllPosts(post);
-            }
-            setLoading(false);
-        });
+        // axios.get('http://localhost:3333/app/AllPosts')
+        // .then(data => {
+        //     for(let post of data) {
+        //         setAllPosts(post);
+        //     }
+        //     setLoading(false);
+        // });
     }, [])
     
     if(loading) {

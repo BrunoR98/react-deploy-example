@@ -13,7 +13,7 @@ import { successLoginAlert } from '../Alerts/SuccessAlerts';
 import { errorLoginAlert } from '../Alerts/ErrorAlerts';
 
 //Services
-import { getUser} from '../../services/UserServices';
+import axios from 'axios';
 
 //Validator
 import { loginValidator } from './LoginValidator';
@@ -34,11 +34,12 @@ export default function Login() {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const userDB = await getUser(user.email);
         try {
-            loginValidator(userDB, user.password);
-            userContext.setUserLogin(userDB[0].username);
-            successLoginAlert(userDB[0].username);
+            await axios.post('http://localhost:3333/app/Login', user)
+                .then(response => console.log(response.data));
+            // loginValidator(userDB, user.password);
+            // userContext.setUserLogin(userDB[0].username);
+            // successLoginAlert(userDB[0].username);
             userContext.setIsLogged(true);
             setUserFound(true);
         } catch (e) {

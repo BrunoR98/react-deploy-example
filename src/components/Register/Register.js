@@ -13,10 +13,7 @@ import { successRegisterAlert } from '../Alerts/SuccessAlerts';
 import { errorRegisterAlert } from '../Alerts/ErrorAlerts';
 
 //Services
-import { setUser, getUsers } from '../../services/UserServices';
-
-//Validator
-import RegisterValidator from './RegisterValidator';
+import axios from 'axios';
 
 export default function Register() {
     const [redirect, setRedirect]           = useState(false);
@@ -34,10 +31,9 @@ export default function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const data = await getUsers();
         try{
-            RegisterValidator(user, data);
-            await setUser(user);
+            axios.post('http://localhost:3333/app/Register', user)
+                .then(response => console.log(response.data));
             setRedirect(true);
             successRegisterAlert();
         } catch (e) {

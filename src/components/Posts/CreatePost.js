@@ -11,7 +11,6 @@ import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
 
 //Services
-import { setPost } from '../../services/PostsServices';
 
 //Alert
 import { postCreatedAlert } from '../Alerts/SuccessAlerts';
@@ -33,10 +32,10 @@ export default function CreatePost () {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setPost(post);
-        setRedirect(true);
-        setTitle('');
-        setContent('');
+        // setPost(post);
+        // setRedirect(true);
+        // setTitle('');
+        // setContent('');
     }
 
     return(
