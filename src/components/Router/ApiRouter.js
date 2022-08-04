@@ -30,7 +30,7 @@ export default function ApiRouter() {
             <Router>
                 <UserContext.Provider value={{ userLogin, setUserLogin, setIsLogged, logOut }}>
                     <Routes>
-                        <Route exact path='/' element={<Home />}/>
+                        <Route exact path='/React-deploy-example' element={<Home />}/>
                         <Route exact path='/Login' element={<Login />}/>
                         <Route exact path='/Register' element={<Register />}/>
                         <Route exact path='/AllPosts' element={isLogged ? <AllPosts /> : <NotLogged />}/>

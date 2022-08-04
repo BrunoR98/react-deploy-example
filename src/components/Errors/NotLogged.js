@@ -10,7 +10,7 @@ export default function NotLogged() {
     }, []);
     
     if(count === 0){
-        return <Navigate to='/' replace/>    
+        return <Navigate to='/React-deploy-example' replace/>    
     }
 
     return <h1>You need to be logged to see or create posts, redirecting to Home in {count}...</h1>

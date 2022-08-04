@@ -51,7 +51,7 @@ export default function AllPosts() {
                     New post
                 </Button>
             </Link>
-            <Link to='/' style={{textDecoration: 'none'}}> 
+            <Link to='/React-deploy-example' style={{textDecoration: 'none'}}> 
                 <Button 
                     variant='contained' 
                     color='warning' 

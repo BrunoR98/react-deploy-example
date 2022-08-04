@@ -10,7 +10,7 @@ export default function PageNotFound() {
     }, []);
     
     if(count === 0){
-        return <Navigate to='/' replace/>    
+        return <Navigate to='/React-deploy-example' replace/>    
     }
 
     return <h1>Page not found, redirecting to Home in {count}...</h1>

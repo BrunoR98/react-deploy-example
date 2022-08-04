@@ -3,6 +3,15 @@ const router = express.Router();
 const User = require('../models/UserModel');
 const Post = require('../models/PostModel');
 
+router.get('/Users', async (request, response) => {
+    try {
+        const allUsers = await User.find({});
+        response.status(200).json(allUsers);
+    } catch (error) {
+        response.status(404).json({message: error.message});
+    }
+})
+
 router.post('/Register', (request, response) => {
     const user = {
         username,
@@ -16,7 +25,7 @@ router.post('/Register', (request, response) => {
         response.status(201).json(data);
     })
     .catch(error => {
-        response.status(404).json(error);
+        response.status(500).json(error);
     })
 })
 
@@ -30,15 +39,13 @@ router.post('/Login', async (request, response) => {
         const userDB = await User.findOne({
             email: user.email,
             password: user.password,
-        });
+        })
 
-        if(userDB === null) {
-            throw new Error('User not found.');
+        if(userDB.data !== null) {
+            response.status(200).json(userDB);
         }
-
-        response.status(200).json(userDB);
     } catch (error) {
-        response.status(404).json({message: error.message});
+        response.status(401).json({message: 'Invalid credentials.'});
     }
 })
 

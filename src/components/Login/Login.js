@@ -15,11 +15,9 @@ import { errorLoginAlert } from '../Alerts/ErrorAlerts';
 //Services
 import axios from 'axios';
 
-//Validator
-import { loginValidator } from './LoginValidator';
-
 //Context
 import UserContext from '../../contexts/UserContext';
+
 
 export default function Login() {
     const [email, setEmail]         = useState('');
@@ -36,14 +34,17 @@ export default function Login() {
         e.preventDefault();
         try {
             await axios.post('http://localhost:3333/app/Login', user)
-            setUserFound(true);
-            userContext.setIsLogged(true);
-        } catch (e) {
-            errorLoginAlert(e.message);
-            return;
+            .then(response => {
+                userContext.setUserLogin(response.data.username);
+                setUserFound(true);
+                successLoginAlert(response.data.username);
+                userContext.setIsLogged(true);
+                setEmail('');
+                setPassword('');
+            });
+        } catch (error) {
+            errorLoginAlert(error.response.data.message);
         }
-        setEmail('');
-        setPassword('');
     }
 
     return(
@@ -79,7 +80,7 @@ export default function Login() {
                     <IconButton aria-label='login' color='success' type='submit'>
                         <Fingerprint fontSize='large'/>Log In
                     </IconButton>
-                    <Link to='/'>
+                    <Link to='/React-deploy-example'>
                         <IconButton aria-label='back' type='button'>
                             <ReplyAllOutlinedIcon fontSize='large'/>
                         </IconButton>

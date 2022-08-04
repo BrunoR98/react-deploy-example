@@ -31,18 +31,33 @@ export default function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try{
-            axios.post('http://localhost:3333/app/Register', user);
-            setRedirect(true);
-            successRegisterAlert();
-        } catch (e) {
-            errorRegisterAlert(e.message);
-            setErrorRedirect(true);
-            return;
+        try {
+            await axios.get('http://localhost:3333/app/Users')
+                .then(response => {
+                    for (let userDB of response.data) {
+                        if(userDB.username === user.username) {
+                            throw new Error('Username already exists.');
+                        } else if (userDB.email === user.email) {
+                            throw new Error('There is already an account with this email.');
+                        }
+                    }
+                });
+
+                try {
+                    axios.post('http://localhost:3333/app/Register', user);
+                    setRedirect(true);
+                    successRegisterAlert();
+                } catch (e) {
+                    errorRegisterAlert(e.message);
+                    setErrorRedirect(true);
+                    return;
+                }
+                setUsername('');
+                setEmail('');
+                setPassword('');
+        } catch (error) {
+            errorRegisterAlert(error.message);
         }
-        setUsername('');
-        setEmail('');
-        setPassword('');
     }
     
     return( 
@@ -88,7 +103,7 @@ export default function Register() {
                     <IconButton aria-label='login' color='success' type='submit'>
                         <HowToRegOutlinedIcon fontSize='large'/>Register
                     </IconButton>
-                    <Link to='/'>
+                    <Link to='/React-deploy-example'>
                         <IconButton aria-label='back' type='button'>
                             <ReplyAllOutlinedIcon fontSize='large'/>
                         </IconButton>
