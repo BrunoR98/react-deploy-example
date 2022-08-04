@@ -1,5 +1,14 @@
-.register-wrapper{
-    display: inline-block;
+.register-wrapper form{
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+.register-wrapper h1{
+    text-align: center;
+}
+
+.register-wrapper form label p{
+    text-align: center;
 }
 
 .register-wrapper .register-label {

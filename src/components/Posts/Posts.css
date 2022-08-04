@@ -3,12 +3,6 @@
 }
 
 .all-posts-wrapper {
-    display: inline-block;
-    align-items: center;
-}
-
-.all-posts-wrapper .all-post-header {
-    text-align: center;
     align-items: center;
 }
 
@@ -25,3 +19,7 @@
 .create-post-content-header {
     font-size: 20px;
 }
+
+.create-post-btn {
+    text-align: center;
+} 

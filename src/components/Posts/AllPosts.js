@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 
 //Styles
 import './Posts.css';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import LogoutIcon from '@mui/icons-material/Logout';
-import { Button } from '@mui/material';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 
 //Components
 import Post from './Post';
@@ -25,6 +27,15 @@ export default function AllPosts() {
     const [allPosts, setAllPosts]   = useReducer(reducer, []);
     const [loading, setLoading]     = useState(true);
     const userContext = useContext(UserContext);
+    const [anchorEl, setAnchorEl] = useState(null);
+  
+    const handleMenu = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+  
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
 
     useEffect(() => {
         axios.get('http://localhost:3333/app/AllPosts')
@@ -42,25 +53,61 @@ export default function AllPosts() {
         
     return(
         <div className='all-posts-wrapper'>
-            <div className='all-post-header'>
-                <h3><AccountCircleIcon sx={{fontSize: '25px'}}/> {userContext.userLogin}</h3>
-            <Link to='/CreatePost' style={{ textDecoration: 'none', marginRight: '5px' }}>
-                <Button 
-                    variant='contained' 
-                    startIcon={<AddCircleOutlineIcon/>}>
-                    New post
-                </Button>
-            </Link>
-            <Link to='/React-deploy-example' style={{textDecoration: 'none'}}> 
-                <Button 
-                    variant='contained' 
-                    color='warning' 
-                    onClick={() => {userContext.logOut()}} 
-                    startIcon={<LogoutIcon/>}>
-                    Log Out
-                </Button>
-            </Link>
-            </div>
+            <AppBar position="static">
+                <Toolbar>
+                    <div>
+                        <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleMenu}
+                            color="inherit"
+                            >
+                            <AccountCircle />
+                        </IconButton>
+                        <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorEl}
+                            anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                            }}
+                            open={Boolean(anchorEl)}
+                            onClose={handleClose}
+                        >
+                            <MenuItem onClick={handleClose}>
+                                <Link to='/CreatePost' 
+                                    style={{ 
+                                        textDecoration: 'none',
+                                        color:'black',
+                                        fontFamily: 'Ibarra Real Nova',
+                                        fontSize: '20px'
+                                    }}>
+                                    New post
+                                </Link>
+                            </MenuItem>
+                            <MenuItem onClick={() => {userContext.logOut()}}>
+                                <Link to='/React-deploy-example' 
+                                    style={{
+                                        textDecoration: 'none',
+                                        color:'black',
+                                        fontFamily: 'Ibarra Real Nova',
+                                        fontSize: '20px'
+                                    }}>
+                                    Log out
+                                </Link>
+                            </MenuItem>
+                        </Menu>
+                    </div>
+                    <h3 className='all-post-header'>{userContext.userLogin}</h3>
+                </Toolbar>
+            </AppBar>
             <ul>
             {allPosts.map(post => (
                 <li key={allPosts.indexOf(post) + 1}>

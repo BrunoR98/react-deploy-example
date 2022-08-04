@@ -39,6 +39,8 @@ export default function Register() {
                             throw new Error('Username already exists.');
                         } else if (userDB.email === user.email) {
                             throw new Error('There is already an account with this email.');
+                        } else if (userDB.password === user.password) {
+                            throw new Error('Password already exists.');
                         }
                     }
                 });
@@ -62,8 +64,9 @@ export default function Register() {
     
     return( 
         <div className='register-wrapper'>
+            <h1>Register</h1>
             <form onSubmit={handleSubmit}>
-                <fieldset className='register-fieldset' style={{border: 'none', borderBottom: '1px solid black', paddingBottom: '18px'}}>
+                <fieldset className='register-fieldset' style={{border: 'none'}}>
                     <label htmlFor='username'>
                         <p className='register-label'>Username</p>
                         <TextField

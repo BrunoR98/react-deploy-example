@@ -76,16 +76,16 @@ export default function Login() {
                         />
                     </label>
                 </fieldset>
-                <div className='login-btn'>
-                    <IconButton aria-label='login' color='success' type='submit'>
-                        <Fingerprint fontSize='large'/>Log In
+            <div className='login-btn'>
+                <IconButton aria-label='login' color='success' type='submit'>
+                    <Fingerprint fontSize='large'/>Log In
+                </IconButton>
+                <Link to='/React-deploy-example'>
+                    <IconButton aria-label='back' type='button'>
+                        <ReplyAllOutlinedIcon fontSize='large'/>
                     </IconButton>
-                    <Link to='/React-deploy-example'>
-                        <IconButton aria-label='back' type='button'>
-                            <ReplyAllOutlinedIcon fontSize='large'/>
-                        </IconButton>
-                    </Link>
-                </div>
+                </Link>
+            </div>
             </form>
             {userFound && <Navigate to='/AllPosts' replace/>}
         </div>
