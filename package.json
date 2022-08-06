@@ -28,7 +28,7 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "api": "nodemon src/config/dbconfig/MongoConfig.js",
+    "api": "node src/config/dbconfig/MongoConfig.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
