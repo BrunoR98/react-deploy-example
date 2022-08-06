@@ -1,13 +1,14 @@
 .register-wrapper form{
-    text-align: center;
     border-bottom: 1px solid black;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .register-wrapper h1{
-    text-align: center;
-}
-
-.register-wrapper form label p{
     text-align: center;
 }
 

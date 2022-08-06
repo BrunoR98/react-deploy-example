@@ -56,6 +56,7 @@ export default function Login() {
                         <TextField
                             helperText='Please enter your email'
                             label='Email'
+                            style={{marginBottom: '20px', marginTop: '5px'}}
                             variant='filled'
                             onChange={(e) => setEmail(e.target.value)}
                             value={email}

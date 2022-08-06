@@ -39,9 +39,7 @@ export default function Register() {
                             throw new Error('Username already exists.');
                         } else if (userDB.email === user.email) {
                             throw new Error('There is already an account with this email.');
-                        } else if (userDB.password === user.password) {
-                            throw new Error('Password already exists.');
-                        }
+                        } 
                     }
                 });
 

@@ -1,7 +1,20 @@
+.home-wrapper {
+    border-bottom: 1px solid black;
+    width: 100%;
+    max-width: 550px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
 .home-btn {
     text-align: end;
 }
 
 .home-title h1{
     text-align: center;
+}
+
+.home-details {
+    margin: auto;
 }
